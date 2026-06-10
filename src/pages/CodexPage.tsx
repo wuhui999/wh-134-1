@@ -11,12 +11,12 @@ export default function CodexPage() {
     <div className="min-h-screen wetland-bg paper-texture flex flex-col">
       <div className="sticky top-0 z-20 bg-wetland-deep/90 backdrop-blur-md border-b border-white/10 px-4 py-3">
         <div className="max-w-4xl mx-auto flex items-center gap-3">
-          <button onClick={() => navigate(-1)} className="text-white/60 hover:text-white transition-colors">
+          <button onClick={() => navigate(-1)} className="text-white/80 hover:text-white transition-colors">
             <ArrowLeft className="w-5 h-5" />
           </button>
           <BookOpen className="w-5 h-5 text-wetland-sand" />
           <h2 className="font-display text-lg text-white font-bold">鸟类图鉴</h2>
-          <span className="text-white/40 text-sm ml-auto">{unlockedBirds.length}/{BIRDS.length} 已解锁</span>
+          <span className="text-white/65 text-sm ml-auto">{unlockedBirds.length}/{BIRDS.length} 已解锁</span>
         </div>
       </div>
 
@@ -37,7 +37,7 @@ export default function CodexPage() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
-                      <h3 className={`font-display text-lg font-bold ${isUnlocked ? 'text-white' : 'text-white/50'}`}>
+                      <h3 className={`font-display text-lg font-bold ${isUnlocked ? 'text-white' : 'text-white/65'}`}>
                         {isUnlocked ? bird.name : '???'}
                       </h3>
                       <span className={`text-xs px-2 py-0.5 rounded-full ${
@@ -50,29 +50,29 @@ export default function CodexPage() {
                     </div>
                     {isUnlocked ? (
                       <>
-                        <p className="text-white/40 text-xs italic mb-1">{bird.scientificName}</p>
-                        <p className="text-white/60 text-sm mb-2">{bird.description}</p>
+                        <p className="text-white/65 text-xs italic mb-1">{bird.scientificName}</p>
+                        <p className="text-white/80 text-sm mb-2">{bird.description}</p>
                         <div className="space-y-1 text-xs">
-                          <p className="text-white/50">🏠 {bird.habitat}</p>
-                          <p className="text-white/50">🎯 {bird.behavior}</p>
-                          <p className="text-white/50">📏 {bird.size}</p>
+                          <p className="text-white/70">🏠 {bird.habitat}</p>
+                          <p className="text-white/70">🎯 {bird.behavior}</p>
+                          <p className="text-white/70">📏 {bird.size}</p>
                         </div>
                         <div className="mt-3 flex items-center gap-2">
-                          <span className="text-white/40 text-xs">环志：</span>
+                          <span className="text-white/65 text-xs">环志：</span>
                           {bird.bandColors.map((c, i) => (
-                            <div key={i} className="band-ring text-[9px]" style={{ backgroundColor: BAND_COLOR_HEX[c], width: '20px', height: '20px' }}>
+                            <div key={i} className="band-ring-sm" style={{ backgroundColor: BAND_COLOR_HEX[c] }}>
                               {c}
                             </div>
                           ))}
                         </div>
-                        <div className="mt-2 text-xs text-wetland-sky/70">
+                        <div className="mt-2 text-xs text-wetland-sky">
                           🗺️ {bird.migrationRoute}（{bird.migrationStart} → {bird.migrationEnd}）
                         </div>
                       </>
                     ) : (
                       <div className="flex items-center gap-2 mt-2">
-                        <Lock className="w-4 h-4 text-white/30" />
-                        <p className="text-white/30 text-sm">识别此鸟种后解锁</p>
+                        <Lock className="w-4 h-4 text-white/50" />
+                        <p className="text-white/50 text-sm">识别此鸟种后解锁</p>
                       </div>
                     )}
                   </div>
@@ -84,24 +84,24 @@ export default function CodexPage() {
 
         <div className="card-game p-5 mb-6">
           <h3 className="font-display text-lg text-white font-bold mb-3">🔗 环志颜色编码规则</h3>
-          <p className="text-white/50 text-sm mb-4">
+          <p className="text-white/75 text-sm mb-4">
             每种环志颜色代表不同的含义，通过颜色组合可以推测鸟类的迁徙路线和栖息特征。
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {(Object.entries(BAND_COLOR_MEANING) as [BandColor, string][]).map(([color, meaning]) => (
-              <div key={color} className="flex items-center gap-3 bg-wetland-dark/30 rounded-lg p-3">
+              <div key={color} className="flex items-center gap-3 bg-wetland-dark/40 rounded-lg p-3">
                 <div
-                  className="band-ring flex-shrink-0"
+                  className="band-ring-sm flex-shrink-0"
                   style={{ backgroundColor: BAND_COLOR_HEX[color] }}
                 >
                   {color}
                 </div>
-                <span className="text-white/70 text-sm">{meaning}</span>
+                <span className="text-white/80 text-sm">{meaning}</span>
               </div>
             ))}
           </div>
-          <div className="mt-4 bg-wetland-dark/20 rounded-lg p-3">
-            <p className="text-white/40 text-xs">
+          <div className="mt-4 bg-wetland-dark/30 rounded-lg p-3">
+            <p className="text-white/65 text-xs">
               💡 提示：环志由2-3个颜色环组成。例如「红+蓝+白」= 东方迁徙路线 + 北方繁殖地 + 候鸟标记，
               表示这是一只在北方繁殖、沿东方路线迁徙的候鸟。
             </p>
@@ -111,25 +111,25 @@ export default function CodexPage() {
         <div className="card-game p-5">
           <h3 className="font-display text-lg text-white font-bold mb-3">📋 观测站等级说明</h3>
           <div className="space-y-3">
-            <div className="flex items-center gap-3 bg-wetland-dark/30 rounded-lg p-3">
-              <div className="w-8 h-8 rounded-lg bg-wetland-sky/20 flex items-center justify-center text-wetland-sky font-bold text-sm">1</div>
+            <div className="flex items-center gap-3 bg-wetland-dark/40 rounded-lg p-3">
+              <div className="w-8 h-8 rounded-lg bg-wetland-sky/25 flex items-center justify-center text-wetland-sky font-bold text-sm">1</div>
               <div>
                 <p className="text-white text-sm font-semibold">基础观测点</p>
-                <p className="text-white/40 text-xs">线索完整度 50%，可见部分环志颜色</p>
+                <p className="text-white/65 text-xs">线索完整度 50%，可见部分环志颜色</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 bg-wetland-dark/30 rounded-lg p-3">
-              <div className="w-8 h-8 rounded-lg bg-wetland-reed/20 flex items-center justify-center text-wetland-reed font-bold text-sm">2</div>
+            <div className="flex items-center gap-3 bg-wetland-dark/40 rounded-lg p-3">
+              <div className="w-8 h-8 rounded-lg bg-wetland-reed/25 flex items-center justify-center text-wetland-reed font-bold text-sm">2</div>
               <div>
                 <p className="text-white text-sm font-semibold">进阶观测点</p>
-                <p className="text-white/40 text-xs">线索完整度 75%，可见更多环志颜色</p>
+                <p className="text-white/65 text-xs">线索完整度 75%，可见更多环志颜色</p>
               </div>
             </div>
-            <div className="flex items-center gap-3 bg-wetland-dark/30 rounded-lg p-3">
-              <div className="w-8 h-8 rounded-lg bg-wetland-dusk/20 flex items-center justify-center text-wetland-dusk font-bold text-sm">3</div>
+            <div className="flex items-center gap-3 bg-wetland-dark/40 rounded-lg p-3">
+              <div className="w-8 h-8 rounded-lg bg-wetland-dusk/25 flex items-center justify-center text-wetland-dusk font-bold text-sm">3</div>
               <div>
                 <p className="text-white text-sm font-semibold">高级观测点</p>
-                <p className="text-white/40 text-xs">线索完整度 100%，可见全部环志颜色</p>
+                <p className="text-white/65 text-xs">线索完整度 100%，可见全部环志颜色</p>
               </div>
             </div>
           </div>

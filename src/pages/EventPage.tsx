@@ -26,8 +26,8 @@ export default function EventPage() {
   if (!event) {
     return (
       <div className="min-h-screen wetland-bg flex items-center justify-center">
-        <div className="text-white/60 text-center">
-          <p className="mb-4">没有待处理的事件</p>
+        <div className="text-white/80 text-center">
+          <p className="mb-4 text-lg">没有待处理的事件</p>
           <button onClick={() => navigate('/map')} className="btn-game bg-wetland-mid text-white">
             返回地图
           </button>
@@ -85,7 +85,7 @@ export default function EventPage() {
           <span className="text-white text-sm flex items-center gap-2">
             🔭 第 {round} 回合观测
           </span>
-          <span className="text-white/60 text-sm flex items-center gap-1">
+          <span className="text-white/80 text-sm flex items-center gap-1">
             💰 {budget} · ⭐ {score}
           </span>
         </div>
@@ -99,7 +99,7 @@ export default function EventPage() {
                 <Eye className="w-5 h-5 text-wetland-sky" />
                 <h3 className="font-display text-lg text-white font-bold">观测事件</h3>
               </div>
-              <p className="text-white/70 text-sm mb-4">
+              <p className="text-white/85 text-sm mb-4">
                 发现一只未知鸟类！观察线索后选择是否派出观测员获取更完整信息。
               </p>
 
@@ -107,25 +107,25 @@ export default function EventPage() {
                 <h4 className="text-wetland-sand text-sm font-semibold mb-2">鸟类线索</h4>
                 <div className="space-y-2">
                   {event.clues.map((clue, i) => (
-                    <div key={i} className="bg-wetland-dark/40 rounded-lg px-3 py-2 text-white/80 text-sm">
+                    <div key={i} className="bg-wetland-dark/50 rounded-lg px-3 py-2 text-white/90 text-sm">
                       {clue}
                     </div>
                   ))}
                   {event.interferenceClues.map((clue, i) => (
-                    <div key={`intf-${i}`} className="bg-wetland-dusk/10 border border-wetland-dusk/20 rounded-lg px-3 py-2 text-wetland-dusk/80 text-sm flex items-center gap-2">
+                    <div key={`intf-${i}`} className="bg-wetland-dusk/15 border border-wetland-dusk/30 rounded-lg px-3 py-2 text-wetland-dusk text-sm flex items-center gap-2">
                       <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
                       {clue}
-                      <span className="text-xs opacity-50">（可疑线索）</span>
+                      <span className="text-xs text-wetland-dusk/70">（可疑线索）</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="mb-4">
-                <h4 className="text-wetland-sand text-sm font-semibold mb-2">可见环志</h4>
-                <div className="flex items-center gap-2 flex-wrap">
+              <div className="mb-5">
+                <h4 className="text-wetland-sand text-sm font-semibold mb-3">可见环志</h4>
+                <div className="flex items-center gap-3 flex-wrap">
                   {event.visibleBands.map((color, i) => (
-                    <div key={i} className="flex items-center gap-1.5">
+                    <div key={i} className="flex flex-col items-center gap-1">
                       <div
                         className="band-ring"
                         style={{ backgroundColor: BAND_COLOR_HEX[color] }}
@@ -135,13 +135,15 @@ export default function EventPage() {
                     </div>
                   ))}
                   {event.hiddenBands.map((_, i) => (
-                    <div key={`hidden-${i}`} className="band-ring bg-white/10 border-dashed">
-                      ?
+                    <div key={`hidden-${i}`} className="flex flex-col items-center gap-1">
+                      <div className="band-ring bg-white/10 border-dashed">
+                        ?
+                      </div>
                     </div>
                   ))}
                 </div>
                 {event.hiddenBands.length > 0 && (
-                  <p className="text-white/40 text-xs mt-2">
+                  <p className="text-white/65 text-xs mt-3">
                     还有 {event.hiddenBands.length} 个环志颜色未观测到
                   </p>
                 )}
@@ -180,13 +182,13 @@ export default function EventPage() {
           <div className="animate-fadeInUp">
             <div className="card-game p-5 mb-4">
               <h3 className="font-display text-lg text-white font-bold mb-1">识别鸟类</h3>
-              <p className="text-white/50 text-sm mb-4">根据线索和环志颜色，选择你认为正确的鸟类</p>
+              <p className="text-white/75 text-sm mb-4">根据线索和环志颜色，选择你认为正确的鸟类</p>
 
               <div className="mb-4">
-                <p className="text-wetland-sand text-xs mb-2">环志组合参考</p>
-                <div className="flex items-center gap-2 flex-wrap">
+                <p className="text-wetland-sand text-xs mb-3 font-semibold">环志组合参考</p>
+                <div className="flex items-center gap-3 flex-wrap">
                   {event.visibleBands.map((color, i) => (
-                    <div key={i} className="flex items-center gap-1.5">
+                    <div key={i} className="flex flex-col items-center gap-1">
                       <div className="band-ring" style={{ backgroundColor: BAND_COLOR_HEX[color] }}>
                         {color}
                       </div>
@@ -216,19 +218,21 @@ export default function EventPage() {
                             {option}
                           </p>
                           {optBird && (
-                            <p className="text-xs text-white/40">{optBird.scientificName}</p>
+                            <p className="text-xs text-white/60">{optBird.scientificName}</p>
                           )}
                         </div>
                       </div>
                       {optBird && (
-                        <div className="mt-2 flex items-center gap-1">
+                        <div className="mt-2 flex items-center gap-2">
                           {optBird.bandColors.map((c, ci) => (
                             <div
                               key={ci}
-                              className="w-4 h-4 rounded-full border border-white/20"
+                              className="band-ring-sm"
                               style={{ backgroundColor: BAND_COLOR_HEX[c] }}
                               title={c}
-                            />
+                            >
+                              {c}
+                            </div>
                           ))}
                         </div>
                       )}
@@ -268,15 +272,15 @@ export default function EventPage() {
               </div>
 
               {bird && (
-                <div className="bg-wetland-dark/40 rounded-lg p-4 text-center">
+                <div className="bg-wetland-dark/50 rounded-lg p-4 text-center">
                   <span className="text-4xl">{bird.emoji}</span>
                   <p className="text-white font-bold mt-2">{bird.name}</p>
-                  <p className="text-white/50 text-sm italic">{bird.scientificName}</p>
-                  <p className="text-white/70 text-sm mt-2">{bird.description}</p>
-                  <div className="mt-3 flex items-center justify-center gap-2">
-                    <span className="text-white/50 text-xs">环志：</span>
+                  <p className="text-white/70 text-sm italic">{bird.scientificName}</p>
+                  <p className="text-white/85 text-sm mt-2">{bird.description}</p>
+                  <div className="mt-3 flex items-center justify-center gap-3">
+                    <span className="text-white/70 text-xs">环志：</span>
                     {bird.bandColors.map((c, i) => (
-                      <div key={i} className="band-ring text-xs" style={{ backgroundColor: BAND_COLOR_HEX[c], width: '22px', height: '22px' }}>
+                      <div key={i} className="band-ring-sm" style={{ backgroundColor: BAND_COLOR_HEX[c] }}>
                         {c}
                       </div>
                     ))}
@@ -286,7 +290,7 @@ export default function EventPage() {
 
               <div className="mt-4">
                 <h4 className="text-wetland-sand text-sm font-semibold mb-2">推测迁徙路线（可选）</h4>
-                <p className="text-white/50 text-xs mb-3">
+                <p className="text-white/70 text-xs mb-3">
                   根据环志颜色含义推测这只鸟的迁徙路线，正确可额外获得 +15 分
                 </p>
                 <div className="space-y-2 mb-3">
@@ -310,7 +314,7 @@ export default function EventPage() {
                 <div className="flex items-center justify-end gap-3">
                   <button
                     onClick={handleSkipMigration}
-                    className="text-white/40 hover:text-white/60 text-sm transition-colors"
+                    className="text-white/60 hover:text-white/80 text-sm transition-colors"
                   >
                     跳过
                   </button>
@@ -342,9 +346,9 @@ export default function EventPage() {
                     <XCircle className="w-10 h-10 text-yellow-500 mx-auto mb-2" />
                     <h3 className="font-display text-xl text-white font-bold mb-1">路线推测未命中</h3>
                     {bird && (
-                      <p className="text-white/50 text-sm">正确路线：{bird.migrationRoute}</p>
+                      <p className="text-white/75 text-sm">正确路线：{bird.migrationRoute}</p>
                     )}
-                    <p className="text-white/40 text-sm mt-1">（{bird?.migrationStart} → {bird?.migrationEnd}）</p>
+                    <p className="text-white/65 text-sm mt-1">（{bird?.migrationStart} → {bird?.migrationEnd}）</p>
                   </>
                 )}
               </div>

@@ -52,7 +52,7 @@ export default function StartPage() {
         <p className="font-display text-xl md:text-2xl text-wetland-sky mb-2 italic">
           Wetland Bird Banding Recovery
         </p>
-        <p className="text-white/60 text-sm max-w-md mx-auto mb-10">
+        <p className="text-white/80 text-sm max-w-md mx-auto mb-10">
           布置观测点，识别环志颜色组合，推测迁徙路线——在有限预算内成为最优秀的湿地鸟类观测站
         </p>
 
@@ -75,8 +75,8 @@ export default function StartPage() {
           </button>
         </div>
 
-        <div className="mt-12 flex items-center justify-center gap-6 text-white/30 text-xs">
-          <span className="flex items-center gap-1"><Map className="w-3 h-3" /> 策略布置</span>
+        <div className="mt-12 flex items-center justify-center gap-6 text-white/60 text-sm">
+          <span className="flex items-center gap-1"><Map className="w-4 h-4" /> 策略布置</span>
           <span className="flex items-center gap-1">🎯 环志识别</span>
           <span className="flex items-center gap-1">🌍 路线推测</span>
         </div>
