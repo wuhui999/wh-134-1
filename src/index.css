@@ -1,0 +1,105 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) translateX(0px); }
+  25% { transform: translateY(-8px) translateX(3px); }
+  50% { transform: translateY(-4px) translateX(-2px); }
+  75% { transform: translateY(-10px) translateX(1px); }
+}
+
+@keyframes drift {
+  0% { transform: translateX(-100%); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(100vw); opacity: 0; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-drift { animation: drift 15s linear infinite; }
+.animate-shimmer { animation: shimmer 3s linear infinite; }
+.animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+.animate-fadeInUp { animation: fadeInUp 0.5s ease-out forwards; }
+.animate-scaleIn { animation: scaleIn 0.3s ease-out forwards; }
+
+.wetland-bg {
+  background: linear-gradient(135deg, #0d3333 0%, #1a4a4a 30%, #2a6a6a 60%, #1a4a4a 100%);
+}
+
+.paper-texture {
+  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M0 20h40M20 0v40' stroke='%23ffffff' stroke-width='0.3' opacity='0.05'/%3E%3C/svg%3E");
+}
+
+.band-ring {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.3);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(0,0,0,0.6);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.2);
+}
+
+.btn-game {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-200;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.3), 0 2px 4px -2px rgba(0,0,0,0.2);
+}
+
+.btn-game:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px -2px rgba(0,0,0,0.4), 0 4px 6px -3px rgba(0,0,0,0.3);
+}
+
+.btn-game:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 4px -1px rgba(0,0,0,0.3);
+}
+
+.card-game {
+  @apply rounded-xl border border-white/10 backdrop-blur-sm;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+}
+
+.observation-point {
+  transition: all 0.3s ease;
+}
+
+.observation-point:hover {
+  transform: scale(1.15);
+  filter: brightness(1.2);
+}
